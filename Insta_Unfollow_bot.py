@@ -1,28 +1,26 @@
+# Importing Modules
 try:
-    print('Importing Modules . . .','\n')
     import time
     import requests
     from bs4 import BeautifulSoup
     from selenium import webdriver
-    import requests
-    # from requests_html import HTMLSession
-    import time
     from selenium.webdriver.common.keys import Keys
-    import pandas as pd
+    import time
     import json
-    import re
-    import gspread
-    from gspread_dataframe import get_as_dataframe, set_with_dataframe
-    from oauth2client.service_account import ServiceAccountCredentials
-    from selenium.webdriver.common.action_chains import ActionChains
-    time.sleep(0.5)
 except Exception as e:
     print('Error importing: ', e,'\n')
 
+# Import your credentials
+with open('creds.json') as json_file:
+    data = json.load(json_file)
+    print(data)
+username = data['username']
+password = data['pass']
 
-################## Opening Chrome Window
-url = 'https://www.instagram.com/'
-driver = webdriver.Chrome('/Users/baptistefernandez/AtomProjects/Scraping Projects/chromedriver')
+
+#Opening Chrome Window
+driver = webdriver.Chrome(ChromeDriverManager().install())
+driver.get('https://www.instagram.com/')
 print('Connecting to Instagram server . . .','\n')
 time.sleep(0.5)
 print('Accessing website . . .','\n')
@@ -35,9 +33,9 @@ driver.find_element_by_xpath('/html/body/div[4]/div/div/button[1]').click()
 time.sleep(2)
 # driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[1]/div/label/input').click()
 # time.sleep(2)
-driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[1]/div/label/input').send_keys('baptistefernandez1')
+driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[1]/div/label/input').send_keys(username)
 time.sleep(2)
-driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[2]/div/label/input').send_keys('Jorkimien6996!i')
+driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[2]/div/label/input').send_keys(password)
 time.sleep(3)
 driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[3]/button/div').click()
 time.sleep(5)
