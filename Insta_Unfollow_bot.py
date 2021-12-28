@@ -5,6 +5,8 @@
 # 4. Scroll all the way down to your first followers (they are the most irrelevant ones)
 # 5. Start unfollowing one by one
 
+# yes 
+
 # Importing Modules
 try:
     from time import sleep
